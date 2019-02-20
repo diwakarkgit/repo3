@@ -7,21 +7,29 @@
   <version>1.0-SNAPSHOT</version>
   <name>flipkart</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
 <plugins>
 <plugin>
 <groupId>org.jacoco</groupId>
 <artifactId>jacoco-maven-plugin</artifactId>
 <version>3.0</version>
-<executions>
+  <configuration>
+    <destFile>${basedir}/target/coverage-report/jacoco-unit.exec</destFile>
+    <dataFile>${basedir}/target/coverage-report/jacoco-unit.exec</dataFile>
+  </configuration>
+  <executions>
 <execution>
+  <id>jacoco-initialize</id>
 <goals>
 <goal>prepare-agent</goal>
 </goals>
 </execution>
 <execution>
-<id>report</id>
-<phase>prepare-package</phase>
+<id>jacoco-site</id>
+<phase>package</phase>
 <goals>
 <goal>report</goal>
 </goals>
